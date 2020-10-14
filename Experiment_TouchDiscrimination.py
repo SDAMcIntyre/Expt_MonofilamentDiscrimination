@@ -44,8 +44,8 @@ participantScreenRes = [int(i) for i in exptInfo['07. Participant screen resolut
 experimenterScreenRes = [int(i) for i in exptInfo['09. Experimenter screen resolution'].split(',')]
 
 ## get stimulus values
-standard = [int(i) for i in exptInfo['02. Standard monofilaments'].split(',')]
-comparison = [int(i) for i in exptInfo['03. Comparison monofilaments'].split(',')]
+standard = [float(i) for i in exptInfo['02. Standard monofilaments'].split(',')]
+comparison = [float(i) for i in exptInfo['03. Comparison monofilaments'].split(',')]
 
 
 # --
