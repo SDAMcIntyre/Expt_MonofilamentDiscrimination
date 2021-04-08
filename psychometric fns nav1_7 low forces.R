@@ -15,7 +15,7 @@ touch.data.nav17 <- read_excel(paste0(data.folder,'Nav 1.7 Data.xlsx'), range = 
          group = 'Nav1.7',
          ID = '0')  
 
-touch.folder <- 'data_controls/Touch - random spots/'
+touch.folder <- paste0(data.folder,'data_controls/Touch - random spots/')
 touch.data.control <- touch.folder %>% 
   list.files('foot_data', recursive = TRUE, full.names = TRUE) %>% 
   map_dfr(read_csv, col_types = cols(), .id = "ID") %>% 
