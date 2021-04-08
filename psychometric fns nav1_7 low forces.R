@@ -8,7 +8,9 @@ library(svglite)
 
 ## READ IN THE DATA ##
 
-touch.data.nav17 <- read_excel('Nav 1.7 Data.xlsx', range = 'A1:F71') %>% 
+data.folder <- '/Users/sarmc72/OneDrive - Linköpings universitet/Data Repositories/Nav17_force-discrim/'
+
+touch.data.nav17 <- read_excel(paste0(data.folder,'Nav 1.7 Data.xlsx'), range = 'A1:F71') %>% 
   mutate(experiment = 'touch',
          group = 'Nav1.7',
          ID = '0')  
