@@ -125,3 +125,8 @@ dmypy.json
 .pyre/
 .DS_Store
 .Rproj.user
+*.docx
+*.pdf
+*.png
+*.svg
+*.zip

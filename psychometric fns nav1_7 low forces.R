@@ -35,6 +35,9 @@ touch.qp <- quickpsy(d = touch.data,
                      fun = logistic_fun,
                      B = 1000)
 
+# save(touch.qp, file = paste0(data.folder,'touch.qp.RData'))
+# load(file = paste0(data.folder,'touch.qp.RData'))
+
 ## PLOT ##
 theme_set(theme_classic(base_size = 14))
 
@@ -54,8 +57,13 @@ plot_psyfun <- function(qp) {
   # my.colour.scale <- c('#1b9e77', '#d95f02')
   
   my.colour.scale <- c(
-    rgb(202, 202, 202, maxColorValue=255), 
-    rgb(69, 139, 250, maxColorValue=255)
+    rgb(202, 202, 202, maxColorValue=255), # control
+    rgb(69, 139, 250, maxColorValue=255) # nav1.7
+  )
+  
+  my.group.labels <- c(
+    'Healthy participants',
+    'Scn9a-LOF CIP participant 4'
   )
   
   ggplot() +
@@ -69,19 +77,22 @@ plot_psyfun <- function(qp) {
     stat_summary(data = qp$curves,
                  aes(x=x, y=y, colour = group),
                  geom = 'line', fun = 'mean') +
-    scale_colour_manual(values = my.colour.scale) +
-    scale_fill_manual(values = my.colour.scale)
+    scale_colour_manual(values = my.colour.scale, name = NULL,
+                        labels = my.group.labels) +
+    scale_fill_manual(values = my.colour.scale, name = NULL,
+                      labels = my.group.labels)
 }
 
 touch.breaks <- unique(touch.data$comparison.mN)
 touch.labels <- textsignif(touch.breaks, digits = 2)
 
-quartz(width = 5.9, height = 5.1); plot(1:10)
+quartz(width = 5.1, height = 5.1); plot(1:10)
 plot_psyfun(touch.qp) +
   scale_x_log10(breaks = touch.breaks, labels = touch.labels) +
-  labs(title = 'Force discrimination', 
+  labs(title = 'Von Frey force discrimination', 
        x ='Comparison force (mN)', 
-       y ='Proportion called greater than 20 mN') 
+       y ='Proportion called greater than 20 mN') +
+  theme(legend.position = c(0.3,0.9))
 
 ggsave('Nav17-vs-control_low-force-discrimination.svg')
 
