@@ -76,7 +76,7 @@ if not os.path.exists(dataFolder):
 fileName = dataFolder + 'PainDiscrimination_' + dateTime + '_' + exptInfo['01. Participant Code']
 
 infoFile = open(fileName+'_info.csv', 'w') 
-for k,v in exptInfo.iteritems(): 
+for k,v in exptInfo.items(): 
     infoFile.write(k + ',' + str(v) + '\n')
 infoFile.close()
 
